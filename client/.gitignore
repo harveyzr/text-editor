@@ -33,7 +33,7 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+node_modules/  # Exclude node_modules directory
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -64,6 +64,11 @@ typings/
 package-lock.json
 yarn.lock
 
+# macOS specific files
 .DS_Store
+
+# Visual Studio Code settings
 .vscode
-*.xslx
+
+# Excel files
+*.xlsx
