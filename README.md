@@ -1,4 +1,4 @@
-# SVG LOGO MAKER
+# Text Editor 
 
 ## Table of Contents
 
