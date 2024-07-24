@@ -1,26 +1,32 @@
-// Import necessary modules
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
-const { InjectManifest } = require('workbox-webpack-plugin');
+// Import necessary modules for Webpack configuration
+const path = require('path'); // Module for handling file and directory paths
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Plugin to generate HTML files
+const WebpackPwaManifest = require('webpack-pwa-manifest'); // Plugin for PWA manifest
+const { InjectManifest } = require('workbox-webpack-plugin'); // Plugin for service worker injection
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Uncomment if using CSS extraction
 
 // Webpack configuration function
 module.exports = () => {
   return {
     mode: 'development', // Set the mode to development for easier debugging
+
+    // Entry points for the application
     entry: {
       main: './src/js/index.js', // Main entry point for the application
       install: './src/js/install.js' // Entry point for the installation logic
     },
+
+    // Output configuration
     output: {
-      filename: '[name].bundle.js', // Output filename pattern
-      path: path.resolve(__dirname, 'dist'), // Output directory
+      filename: '[name].bundle.js', // Output filename pattern based on entry names
+      path: path.resolve(__dirname, 'dist'), // Output directory for bundled files
     },
+
+    // Plugins configuration
     plugins: [
       // Generates an HTML file and injects the bundles
       new HtmlWebpackPlugin({
-        template: './index.html', // Template for the HTML file
+        template: './index.html', // Template for the generated HTML file
         title: 'JATE' // Title of the HTML document
       }),
 
@@ -51,6 +57,7 @@ module.exports = () => {
       }),
     ],
 
+    // Module rules for processing different file types
     module: {
       rules: [
         {
@@ -61,7 +68,7 @@ module.exports = () => {
           test: /\.m?js$/, // Regex to match JavaScript files
           exclude: /node_modules/, // Exclude node_modules directory
           use: {
-            loader: 'babel-loader', // Use Babel for transpiling
+            loader: 'babel-loader', // Use Babel for transpiling JavaScript
             options: {
               presets: ['@babel/preset-env'], // Presets for Babel
               plugins: [
